@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getBanner } from '../redux/bannerSlice';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Timer from './Timer';
 
 const Banner = () => {
@@ -12,7 +12,7 @@ const Banner = () => {
     const error = useSelector((state) => state.banner.error);
     const [bannerToggle, setBannerToggle] = useState(true);
     const [isBannerVisible, setIsBannerVisible] = useState(true);
-
+    const navigate = useNavigate();
     useEffect(() => {
         if (id) {
             dispatch(getBanner(id)).then((response) => {
@@ -33,7 +33,10 @@ const Banner = () => {
     };
 
     return (
-        <div className='flex justify-center items-center flex-col'>
+        <div className=' flex justify-center items-center flex-col'>
+            <div className='top-0 left-0 absolute'>
+                <button onClick={() => navigate("/")}  >Create a new banner</button>
+            </div>
             {status === 'loading' && <p>Loading....</p>}
             {status === 'succeeded' && bannerToggle && isBannerVisible &&
                 <div className='bannerDetails flex justify-center items-center flex-col mb-5 max-w-[600px] px-6'>

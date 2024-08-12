@@ -33,7 +33,7 @@ export const createBanner = createAsyncThunk<
   'banner/createBanner',
   async (banner, { rejectWithValue }) => {
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/create', banner);
+      const response = await axios.post('https://bannerproject-vb64.onrender.com/api/v1/create', banner);
       return response.data.banner;
     } catch (error: any) {
       return rejectWithValue(error.response.data as ErrorResponse);
@@ -51,7 +51,7 @@ export const getBanner = createAsyncThunk<
   'banner/getBanner',
   async (id, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/${id}`);
+      const response = await axios.get(`https://bannerproject-vb64.onrender.com/api/v1/${id}`);
       return response.data.banner;
     } catch (error: any) {
       return rejectWithValue(error.response.data as ErrorResponse);
@@ -69,7 +69,7 @@ export const updateBanner = createAsyncThunk<
   'banner/updateBanner',
   async (banner, { rejectWithValue }) => {
     try {
-      const response = await axios.patch(`http://localhost:3000/api/v1/${banner.id}`, banner);
+      const response = await axios.patch(`https://bannerproject-vb64.onrender.com/api/v1/${banner.id}`, banner);
       return response.data.banner;
     } catch (error: any) {
       return rejectWithValue(error.response.data as ErrorResponse);
